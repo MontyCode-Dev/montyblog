@@ -12,7 +12,7 @@ const PostDetails = ({ post }) => {
           <CommentForm slug={post.slug} />
           <Comments slug={post.slug} />
         </div>
-        <div className="md:w-1/3 w-full p-6">
+        <div className="md:w-1/3 w-full mb-12">
           <div className="lg:sticky relative top-8">
             <PostWidget slug={post.slug} categories={post.categories.map((category) => category.slug)} />
             <Categories />

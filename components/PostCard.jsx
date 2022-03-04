@@ -4,10 +4,10 @@ import Link from 'next/link';
 
 const PostCard = ({ post }) => {
   return (
-    <div className='mt-8 md:mt-12 md:px-20 lg:px-14 xl:px-0 w-full flex justify-center items-center space-y-10 flex-col'>
+    <div className='md:px-20 lg:px-14 xl:px-0 w-full flex justify-center items-center space-y-10 flex-col mb-12'>
       <div className="w-full flex justify-start items-start flex-col">
             <div className="w-full">
-              <img className="lg:object-cover lg:h-72 xl:h-96 w-full" src={post.featuredImage.url} alt={post.title} />
+              <img className="lg:object-cover lg:h-72 xl:h-96 w-full rounded-t" src={post.featuredImage.url} alt={post.title} />
             </div>
             <div className="flex flex-col justify-start items-start w-full space-y-4 shadow bg-white rounded p-6">
                 <h2 className="lg:text-4xl text-3xl font-bold mt-4 text-gray-800">{post.title}</h2>

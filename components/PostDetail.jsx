@@ -27,7 +27,7 @@ const PostDetail = ({ post }) => {
       case 'heading-four':
         return <h4 key={index} className="mb-4 text-xl text-gray-800 font-bold">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</h4>;
       case 'paragraph':
-        return <p key={index} className="mb-5 text-gray-800 text-xl">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</p>;
+        return <p key={index} className="mb-4 text-gray-800">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</p>;
       case 'code-block':
         return <pre key={index} ><code className='mb-5 overflow-x-scroll'>{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</code></pre>;
       case 'image':
@@ -65,7 +65,7 @@ const PostDetail = ({ post }) => {
             className="h-full w-full object-cover overflow-hidden shadow"
           />
         </div>
-        <article className="prose lg:prose-xl mx-auto mb-6">
+        <article className="prose lg:prose-xl mx-auto mb-6 overflow-hidden">
             {post.content.raw.children.map((typeObj, index ) => {
               const children = typeObj.children.map((item, itemIndex) => getContentFragment(itemIndex, item.text, item))
 
