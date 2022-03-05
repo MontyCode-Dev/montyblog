@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Head from 'next/head';
 import { PostCard, Categories, PostWidget } from '../components';
 import { getPosts } from '../services'
 
