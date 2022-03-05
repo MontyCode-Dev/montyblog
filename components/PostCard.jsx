@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { BsArrowRightShort } from 'react-icons/bs';
 import moment from 'moment';
 import Link from 'next/link';
 
@@ -11,6 +12,15 @@ const PostCard = ({ post }) => {
             </div>
             <div className="flex flex-col justify-start items-start w-full space-y-4 shadow bg-white rounded p-6">
                 <h2 className="lg:text-4xl text-3xl font-bold mt-4 text-gray-800">{post.title}</h2>
+                <div className="w-full justify-between items-center">
+                    <div className="md:-mx-2 flex items-center flex-wrap">
+                        {post.categories.map((category) => (
+                          <div key={category.slug} className="flex items-center justify-center p-2 m-2 bg-gray-200 rounded">
+                              <p className="text-sm lg:text-base leading-none text-gray-600">#{category.name}</p>
+                          </div>
+                        ))}
+                    </div>
+                </div>
                 <div className="flex items-center lg:mt-8 mt-6">
                     <img src={post.author.photo.url} alt={post.author.name} className="w-10 h-10 object-cover" />
                     <div>
@@ -22,10 +32,7 @@ const PostCard = ({ post }) => {
                   <Link href={`/post/${post.slug}`}>
                     <div className="cursor-pointer border border-gray-600 flex justify-center items-center hover:bg-gray-800 hover:text-white transition duration-200 ease-in-out text-gray-800 space-x-3 px-5 py-3">
                         <p className="text-base leading-none ">Leer Mas</p>
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M8.375 3.5L12.875 8L8.375 12.5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
-                          <path d="M12.25 8H3.125" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>          
+                        <BsArrowRightShort className='w-6 h-6' />      
                     </div>
                   </Link>
                   <p className="text-sm md:text-base leading-4 text-gray-600">{moment(post.createdAt).format('MMM DD, YYYY')}</p>
