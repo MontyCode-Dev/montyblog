@@ -1,10 +1,14 @@
 import React from 'react';
+import Head from 'next/head';
 import { getPosts, getPostDetails } from '../../services';
 import { PostDetail, Categories, PostWidget, Author, Comments, CommentForm } from '../../components';
 
 const PostDetails = ({ post }) => {
   return (
     <div className="container pt-6 mx-auto p-6">
+      <Head>
+        <title>Montycode Blog | {post.title}</title>
+      </Head>
       <section className='flex flex-wrap'>
         <div className="md:w-2/3 w-full pb-6 md:pb-0 md:pr-6">
           <PostDetail post={post} />
