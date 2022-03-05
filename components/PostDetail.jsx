@@ -1,61 +1,36 @@
 import React from "react";
+import { FaCalendarAlt } from 'react-icons/fa';
 import moment from 'moment';
+import ReactMarkdown from 'react-markdown';
 
 const PostDetail = ({ post }) => {
-  const getContentFragment = (index, text, obj, type) => {
-    let modifiedText = text;
-
-    if (obj) {
-      if (obj.bold) {
-        modifiedText = (<b key={index}>{text}</b>);
-      }
-
-      if (obj.italic) {
-        modifiedText = (<em key={index}>{text}</em>);
-      }
-
-      if (obj.underline) {
-        modifiedText = (<u key={index}>{text}</u>);
-      }
-    }
-
-    switch (type) {
-      case 'heading-two':
-        return <h3 key={index} className="mb-6 text-3xl text-gray-800 font-bold">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</h3>;
-      case 'heading-three':
-        return <h3 key={index} className="mb-6 text-2xl text-gray-800 font-bold">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</h3>;
-      case 'heading-four':
-        return <h4 key={index} className="mb-4 text-xl text-gray-800 font-bold">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</h4>;
-      case 'paragraph':
-        return <p key={index} className="mb-4 text-gray-800">{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</p>;
-      case 'code-block':
-        return <pre key={index} ><code className='mb-5 overflow-x-scroll'>{modifiedText.map((item, i) => <React.Fragment key={i}>{item}</React.Fragment>)}</code></pre>;
-      case 'image':
-        return (
-          <img
-            key={index}
-            alt={obj.title}
-            height={obj.height}
-            width={obj.width}
-            src={obj.src}
-          />
-        );
-      default:
-        return modifiedText;
-    }
-  };
-
+  console.log(post);
   return (
     <div className="container mx-auto">
-        <p className="mb-4 mb-3 text-red-500 text-lg">Categoria</p>
+        <div className="flex items-center">
+            <p className="text-sm lg:text-base leading-none text-gray-500">{moment(post.createdAt).format('MMM DD, YYYY')}</p>
+        </div>
         <h1 className="text-5xl text-gray-800 font-medium mb-6">
           {post.title}
         </h1>
-        <p className="text-gray-700 text-2xl">{moment(post.createdAt).format('MMM DD, YYYY')}</p>
+        <div className="w-full justify-between mt-4 items-center">
+            <div className="md:-mx-2 flex items-center flex-wrap">
+                {post.categories.map((category) => (
+                  <div key={category.slug} className="flex items-center justify-center p-2 m-2 bg-gray-200 rounded">
+                      <p className="text-sm lg:text-base leading-none text-gray-600">#{category.name}</p>
+                  </div>
+                ))}
+            </div>
+        </div>
         <div className="flex items-center mb-8">
             <img src={post.author.photo.url} alt={post.author.name} className="w-10 h-10 object-cover" />
             <div>
-                <p className="text-base text-gray-800 ml-4">Por <span className="underline cursor-pointer">{post.author.name}</span></p>
+                <p className="text-base text-gray-600 ml-4">
+                  Publicado por&nbsp;
+                  <span className="underline cursor-pointer">
+                    {post.author.name}
+                  </span>
+                </p>
             </div>
         </div>
         <div className="h-96 w-full relative border-b border-gray-300 mb-12">
@@ -66,11 +41,9 @@ const PostDetail = ({ post }) => {
           />
         </div>
         <article className="prose lg:prose-xl mx-auto mb-6 overflow-hidden">
-            {post.content.raw.children.map((typeObj, index ) => {
-              const children = typeObj.children.map((item, itemIndex) => getContentFragment(itemIndex, item.text, item))
-
-              return getContentFragment(index, children, typeObj, typeObj.type)
-            })}
+            <ReactMarkdown>
+              {post.content}
+            </ReactMarkdown>
         </article>
     </div>
   );
