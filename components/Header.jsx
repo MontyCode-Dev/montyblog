@@ -1,69 +1,60 @@
 import React, { useState, useEffect } from "react";
 import { getCategories } from "../services";
-import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { FaGithub, FaInstagram, FaTwitter } from "react-icons/fa";
 import Logo from "../public/logo.png";
 
 import Link from "next/link";
 import Image from "next/image";
 
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     getCategories().then((newCategories) => setCategories(newCategories));
   }, []);
 
-  const handleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
   return (
-    <header className="py-4 md:py-10">
-      <div className="mx-auto container px-4 xl:px-0">
-        <div className="flex items-center justify-between">
-          <Link href="/">
-            <div className="w-40 cursor-pointer">
-              <Image src={Logo} alt="logo" />
-            </div>
-          </Link>
-          <div>
-            <button
-              onClick={handleMenu}
-              className="sm:block md:hidden lg:hidden text-gray-500 hover:text-gray-700 focus:text-gray-700 focus:outline-none"
-            >
-              <AiOutlineMenu className="h-8 w-8" />
-            </button>
-            <div
-              id="menu"
-              className={"md:block lg:block " + (isOpen ? "block" : "hidden")}
-            >
-              <button
-                onClick={handleMenu}
-                className="block md:hidden lg:hidden text-gray-500 hover:text-gray-700 focus:text-gray-700 fixed focus:outline-none z-30 top-0 pt-12"
-              >
-                <AiOutlineClose className="h-8 w-8" />
-              </button>
-              <ul className="flex md:flex text-3xl md:text-base bg-white lg:text-base lg:flex flex-col md:flex-row lg:flex-row justify-center items-center fixed md:relative lg:relative top-0 bottom-0 left-0 right-0 z-20">
+    <div className="relative">
+        <div className="px-6 py-9">
+            <div className="container mx-auto flex items-center justify-between">
+                <Link href="/">
+                  <div className="w-40 cursor-pointer">
+                    <Image src={Logo} alt="logo" />
+                  </div>
+                </Link>
+                <ul className="hidden w-8/12 md:flex items-center justify-center space-x-8">
                 {categories.map((category) => (
                   <li
-                    className="md:mr-8 lg:mr-10 flex items-center"
                     key={category.slug}
                   >
                     <Link
-                      className="hover:text-gray-800 text-gray-600 text-sm pt-10 md:pt-0"
                       href={`/category/${category.slug}`}
                     >
-                      {category.name}
+                      <a 
+                        className="text-base font-semibold text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"
+                      >
+                        {category.name}
+                      </a>
                     </Link>
                   </li>
                 ))}
-              </ul>
+                </ul>
+                <div className="md:w-2/12 justify-end flex items-center space-x-4 xl:space-x-8">
+                    <div className="flex items-center space-x-4 xl:space-x-8">
+                        <Link href='https://github.com/montycode'>
+                            <a className="text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800"><FaGithub className="fill-stroke w-8 h-8" /></a>
+                        </Link>
+                        <Link href='https://www.instagram.com/montycode/'>
+                            <a className="text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800"><FaInstagram className="fill-stroke w-8 h-8" /></a>
+                        </Link>
+                        <Link href='https://twitter.com'>
+                            <a className="text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800"><FaTwitter className="fill-stroke w-8 h-8" /></a>
+                        </Link>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </header>
+    </div>
   );
 };
 
