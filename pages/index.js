@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { PostCard, Categories, PostWidget } from '../components';
-import { getPosts } from '../services'
+import { getPosts } from '../services';
+import { FeaturedPosts } from '../sections';
 
 
 
@@ -12,6 +13,7 @@ export default function Home({ posts }) {
         <meta name="description" content="Montycode Blog" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <FeaturedPosts />
       <section className='flex flex-wrap'>
         <div className="md:w-2/3 w-full pb-6 md:pb-0 md:pr-6">
           {posts.map((post) => <PostCard post={post.node} key={post.node.title} />)}
