@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 const PostCard = ({ post }) => {
   return (
-    <div className='md:px-20 lg:px-14 xl:px-0 w-full flex justify-center items-center space-y-10 flex-col mb-12'>
+    <div className='w-full flex justify-center items-center space-y-10 flex-col mb-12'>
       <div className="w-full flex justify-start items-start flex-col">
             <div className="w-full">
               <img className="lg:object-cover lg:h-72 xl:h-96 w-full rounded-t" src={post.featuredImage.url} alt={post.title} />
