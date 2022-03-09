@@ -10,7 +10,24 @@ export default function Home({ posts }) {
     <div className="container pt-6 mx-auto p-6 mb-6">
       <Head>
         <title>Montycode Blog</title>
-        <meta name="description" content="Montycode Blog" />
+        <meta name="description" content="MontyCode Blog" />
+        <meta name="author" content="MontyCode" />
+        <meta name="description" content="
+          El propósito de MontyCode es ayudar tanto a los principiantes 
+          como a los desarrolladores más avanzados a llevar sus habilidades de desarrollo 
+          al siguiente nivel y crear aplicaciones increíbles.
+        " />
+        <meta property="og:url" content="https://montycode.dev"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="MontyCode | Blog"/>
+        <meta property="og:image" content="https://i.imgur.com/xHHrLeT.png" />
+        <meta property="og:image:alt" content="MontyCode | Blog"/>
+        <meta property="og:description" content="
+          El propósito de MontyCode es ayudar tanto a los principiantes 
+          como a los desarrolladores más avanzados a llevar sus habilidades de desarrollo 
+          al siguiente nivel y crear aplicaciones increíbles."/>
+        <meta property="og:site_name" content="MontyCode"/>
+        <meta property="og:locale" content="es_MX"/>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <FeaturedPosts />
