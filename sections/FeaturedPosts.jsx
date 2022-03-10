@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FeaturedPostCard } from '../components';
 import { getFeaturedPosts } from '../services';
-import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
 
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -25,22 +24,6 @@ const responsive = {
   },
 };
 
-const customLeftArrow = (
-  <div className="absolute left-0 rounded-full shadow">
-    <button aria-controls="slide" aria-label="slide back" className="rounded-full bg-white shadow cursor-pointer mr-4 p-2 ">
-        <BiLeftArrowAlt className='w-6 h-6 text-purple-100' />
-    </button>
-  </div>
-);
-
-const customRightArrow = (
-  <div className="absolute right-0 rounded-full shadow">
-    <button aria-controls="slide" aria-label="slide back" className="rounded-full bg-white shadow cursor-pointer mr-4 p-2 ">
-        <BiRightArrowAlt className='w-6 h-6 text-purple-100' />
-    </button>
-  </div>
-);
-
 const FeaturedPosts = () => {
   const [featuredPosts, setFeaturedPosts] = useState([]);
   const [dataLoaded, setDataLoaded] = useState(false);
@@ -54,7 +37,7 @@ const FeaturedPosts = () => {
 
   return (
     <div className="mb-8">
-      <Carousel infinite customLeftArrow={customLeftArrow} customRightArrow={customRightArrow} responsive={responsive} itemClass="px-4">
+      <Carousel infinite responsive={responsive} itemClass="px-4" removeArrowOnDeviceType={["tablet", "mobile"]}>
         {dataLoaded && featuredPosts.map((post, index) => (
           <FeaturedPostCard key={index} post={post} />
         ))}
