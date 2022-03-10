@@ -44,7 +44,7 @@ export const getRecentPosts = async () => {
   const query = gql`
         query GetPostsDetails() {
             posts (
-                orderBy: createdAt_DESC
+                orderBy: createdAt_ASC
                 last: 3
             ) {
                 title
@@ -66,6 +66,7 @@ export const getSimilarPosts = async (categories, slug) => {
   const query = gql`
     query GetPostsDetails($slug: String!, $categories: [String!]) {
       posts(
+        orderBy: createdAt_ASC
         where: {
           slug_not: $slug
           AND: { categories_some: { slug_in: $categories } }
@@ -206,7 +207,10 @@ export const getComments = async (slug) => {
 export const getFeaturedPosts = async () => {
   const query = gql`
     query GetCategoryPost() {
-      posts(where: {featuredPost: true}) {
+      posts(
+        orderBy: createdAt_DESC
+        where: {featuredPost: true}
+      ) {
         author {
           ... on Author {
             id
