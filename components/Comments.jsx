@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import moment from "moment";
-import { getComments } from "../services";
+import React, { useState, useEffect } from 'react';
+import dayjs from 'dayjs';
+import { getComments } from '../services';
 import { FaRegCommentDots, FaBookmark } from 'react-icons/fa';
 
 const Comments = ({ slug }) => {
@@ -34,7 +34,7 @@ const Comments = ({ slug }) => {
                 <div className="ml-2 w-full">
                   <div className="mb-3 flex justify-between">
                     <p className="text-gray-700 font-bold">{comment.name}</p>
-                    <p className="text-gray-700 text-xs">{moment(comment.createdAt).format('MMM DD, YYYY')}</p>
+                    <p className="text-gray-700 text-xs">{dayjs(comment.createdAt).format('MMM DD, YYYY')}</p>
                   </div>
                   <p className="text-gray-700 mb-4">
                     {comment.comment}

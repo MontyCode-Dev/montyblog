@@ -1,6 +1,6 @@
 import React from "react";
 import { FaCalendarAlt } from 'react-icons/fa';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import ReactMarkdown from 'react-markdown';
 
 const PostDetail = ({ post }) => {
@@ -8,7 +8,7 @@ const PostDetail = ({ post }) => {
   return (
     <div className="container mx-auto">
         <div className="flex items-center">
-            <p className="text-sm lg:text-base leading-none text-gray-500">{moment(post.createdAt).format('MMM DD, YYYY')}</p>
+            <p className="text-sm lg:text-base leading-none text-gray-500">{dayjs(post.createdAt).format('MMM DD, YYYY')}</p>
         </div>
         <h1 className="text-5xl text-gray-800 font-medium mb-6">
           {post.title}

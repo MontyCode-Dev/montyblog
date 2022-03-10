@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import moment from "moment";
+import dayjs from "dayjs";
 import Link from "next/link";
 
 import { getRecentPosts, getSimilarPosts } from "../services";
@@ -31,7 +31,7 @@ const PostWidget = ({ categories, slug }) => {
                 </div>
                 <div className="flex flex-col pl-6">
                     <p className="text-base font-semibold leading-4 text-gray-800">{post.title}</p>
-                    <p className="text-xs leading-3 text-gray-800 pt-2">{moment(post.createdAt).format('MMM DD, YYYY')}</p>
+                    <p className="text-xs leading-3 text-gray-800 pt-2">{dayjs(post.createdAt).format('MMM DD, YYYY')}</p>
                 </div>
             </div>
           </Link>

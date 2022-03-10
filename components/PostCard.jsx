@@ -1,6 +1,6 @@
 import React from 'react';
 import { BsArrowRightShort } from 'react-icons/bs';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import Link from 'next/link';
 
 const PostCard = ({ post }) => {
@@ -35,7 +35,7 @@ const PostCard = ({ post }) => {
                         <BsArrowRightShort className='w-6 h-6' />      
                     </div>
                   </Link>
-                  <p className="text-sm md:text-base leading-4 text-gray-600">{moment(post.createdAt).format('MMM DD, YYYY')}</p>
+                  <p className="text-sm md:text-base leading-4 text-gray-600">{dayjs(post.createdAt).format('MMM DD, YYYY')}</p>
                 </div>
             </div>
         </div>
